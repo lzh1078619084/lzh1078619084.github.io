@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>CSRF跨站请求伪造 | Hacker</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CSRF跨站请求伪造原理 黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。 这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为。">
+<meta name="keywords" content="WEB安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSRF跨站请求伪造">
+<meta property="og:url" content="https://github.com/lzhblog/lzhblog.github.io/2019/05/28/CSRF跨站请求伪造/index.html">
+<meta property="og:site_name" content="Hacker">
+<meta property="og:description" content="CSRF跨站请求伪造原理 黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。 这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4v14IH9otfHiaC5m7HROAD1qOxyQ48gAS3MQicaLuSTOVZMUtVYesgYUlA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4v8rxWAbLDqibEhIATdEUZpHWuJ69NdQkkkYqhcic0XicicPcFqiazT11ib2AA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vzFtFggv2FwwktiaSnt33R5CYCRT9jFtl4aJUzh9xTo5QnVdTVXtTZ0Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vFqc98JliaFOSyVge5S6AzgAibINLpYYkdpHKNobHf1JAW3UwI1pIrg1A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vL2KmkgA9KULsDkfOXCYKsRZfRycBONWCAAc4lNbAdMB25bV7Y7ibnBw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vPiaI5uoibbicYxl3q6x2dHWP0ibqEg8RF87XIqR1icbcqQrGEZUStBtKLgw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vpFtcrArw65qrT8sHmic8EoRU6pVszLaas2UOYqf6sgASJS9z3TrDyQw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vCVDYYQSZCTO0bVibSM7cicW9wrEqvM5KGh9Tnu2iay4NflsjSkzw42O0g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/yU6e7n4FUr28YaWBUjib1zcJhvhoktxFrYwicbjobTXN9YAsVSH32VODeWHB5lYfW83mumDSFPhJNbqnBXNkichzg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2019-05-28T11:28:23.153Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSRF跨站请求伪造">
+<meta name="twitter:description" content="CSRF跨站请求伪造原理 黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。 这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为。">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4v14IH9otfHiaC5m7HROAD1qOxyQ48gAS3MQicaLuSTOVZMUtVYesgYUlA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+  
+    <link rel="alternative" href="/atom.xml" title="Hacker" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="img/image.jpg">
+  
+  <link rel="stylesheet" href="../../../../css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/image.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Hacker安全</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="../../../../index.html">主页</a></li>
+				        
+							<li><a href="../../../../archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="../../../../tags/web安全/" style="font-size: 10px;">WEB安全</a> <a href="../../../../tags/python/" style="font-size: 20px;">python</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Hacker安全</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/image.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Hacker安全</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="../../../../index.html">主页</a></li>
+		        
+					<li><a href="../../../../archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-CSRF跨站请求伪造" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href class="article-date">
+  	<time datetime="2019-05-28T11:28:29.797Z" itemprop="datePublished">2019-05-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSRF跨站请求伪造
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/web安全/">WEB安全</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="../../../../categories/web安全/">WEB安全</a>
+	</div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p> 黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。</p>
+<p>这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为。</p>
+<a id="more"></a>
+<p>与XSS攻击相比较，CSRF攻击往往不大流行（因此对其进行的防范资源也相对稀少）。</p>
+<p>一个CSRF漏洞攻击的实现需要3点构成：</p>
+<p>1 有一个漏洞存在（无需验证、任意修改后台数据。新增请求）。出现比较多的场景有用户密码修改、购物地址的修改或者后台管理账户的新增等操作过程中；</p>
+<p>2 伪装数据操作请求的恶意链接或者页面；</p>
+<p>3 诱使用户主动访问或登录恶意链接，触发非法操作；</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4v14IH9otfHiaC5m7HROAD1qOxyQ48gAS3MQicaLuSTOVZMUtVYesgYUlA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<h2 id="使用环境"><a href="#使用环境" class="headerlink" title="使用环境"></a>使用环境</h2><p>这里总共需要3个环境，管理员设备，攻击机，被攻击的服务器。</p>
+<p>管理员设备：</p>
+<p>操作系统：win10</p>
+<p>IP：192.168.139.125</p>
+<p>攻击机:</p>
+<p>操作系统：win7（虚拟机）</p>
+<p>IP：192.168.100.131</p>
+<p>phpStudy集成环境</p>
+<p>服务器：</p>
+<p>操作系统：CentOS7（虚拟机）</p>
+<p>IP：192.168.100.10</p>
+<p>PHP+Apache</p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>实验所需代码如下：</p>
+<p>服务器端 ：login.html</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4v8rxWAbLDqibEhIATdEUZpHWuJ69NdQkkkYqhcic0XicicPcFqiazT11ib2AA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<p>服务器端：login.php</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vzFtFggv2FwwktiaSnt33R5CYCRT9jFtl4aJUzh9xTo5QnVdTVXtTZ0Q/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<p>服务器端：message.php</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vFqc98JliaFOSyVge5S6AzgAibINLpYYkdpHKNobHf1JAW3UwI1pIrg1A/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<p>攻击机：Hacker.html</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vL2KmkgA9KULsDkfOXCYKsRZfRycBONWCAAc4lNbAdMB25bV7Y7ibnBw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<p>操作步骤如下：</p>
+<p>管理员远程登录后台管理系统</p>
+<p>(192.168.100.10/login.html)</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vPiaI5uoibbicYxl3q6x2dHWP0ibqEg8RF87XIqR1icbcqQrGEZUStBtKLgw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<p>此时管理员看到一条吸引人的消息并打开</p>
+<p>(模拟管理员点击，在url栏中输入攻击者的网站)</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vpFtcrArw65qrT8sHmic8EoRU6pVszLaas2UOYqf6sgASJS9z3TrDyQw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<p>当管理员点击完链接时，攻击已经完成，此时在服务器后台中已经成功生成了一个名叫“Hacker安全”</p>
+<p>的用户，若在真实场景，攻击者就可以通过新生成的用户来登录服务器后台。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/yU6e7n4FUr16kq91956GheWQeLhZmB4vCVDYYQSZCTO0bVibSM7cicW9wrEqvM5KGh9Tnu2iay4NflsjSkzw42O0g/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<p>防御</p>
+<p>1 管理员工作后要及时退出登录</p>
+<p>2 对敏感操作设置Token认证</p>
+<p>3 对敏感操作设置短信验证码或邮箱验证码认证</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/yU6e7n4FUr28YaWBUjib1zcJhvhoktxFrYwicbjobTXN9YAsVSH32VODeWHB5lYfW83mumDSFPhJNbqnBXNkichzg/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../27/python保留字/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python保留字详解</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="CSRF跨站请求伪造" data-title="CSRF跨站请求伪造" data-url="https://github.com/lzhblog/lzhblog.github.io" data-images="/img/image.jpg" data-content="CSRF跨站请求伪造">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Hacker安全
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="../../../../js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
