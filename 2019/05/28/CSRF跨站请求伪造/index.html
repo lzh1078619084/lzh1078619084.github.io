@@ -3,18 +3,19 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Hacker</title>
+  <title>CSRF跨站请求伪造 | Hacker</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title:CSRF跨站请求伪造 tags:WEB安全 categories:WEB安全  CSRF跨站请求伪造原理黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。 这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为">
+  <meta name="description" content="CSRF跨站请求伪造原理黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。 这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为。">
+<meta name="keywords" content="WEB安全">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hacker">
+<meta property="og:title" content="CSRF跨站请求伪造">
 <meta property="og:url" content="https://github.com/lzhblog/lzhblog.github.io/2019/05/28/CSRF跨站请求伪造/index.html">
 <meta property="og:site_name" content="Hacker">
-<meta property="og:description" content="title:CSRF跨站请求伪造 tags:WEB安全 categories:WEB安全  CSRF跨站请求伪造原理黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。 这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为">
+<meta property="og:description" content="CSRF跨站请求伪造原理黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。 这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://img.xiumi.us/xmi/ua/2bu3p/i/42bbf278ceffe24249498c89b89ad441-sz_25418.png">
 <meta property="og:image" content="http://img.xiumi.us/xmi/ua/2bu3p/i/6973839f3a1837212e136578177d05a4-sz_30286.png">
@@ -25,10 +26,10 @@
 <meta property="og:image" content="http://img.xiumi.us/xmi/ua/2bu3p/i/1d6d69df3e3500802f01bda1f0101c60-sz_1691.png">
 <meta property="og:image" content="http://img.xiumi.us/xmi/ua/2bu3p/i/5a94eb215765f207186c5684f9c4cc45-sz_3730.png">
 <meta property="og:image" content="http://img.xiumi.us/xmi/ua/2bu3p/i/f14737c93feceabef3ad954ce64fcd5a-sz_86755.gif">
-<meta property="og:updated_time" content="2019-05-28T11:48:57.798Z">
+<meta property="og:updated_time" content="2019-05-28T11:56:40.887Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hacker">
-<meta name="twitter:description" content="title:CSRF跨站请求伪造 tags:WEB安全 categories:WEB安全  CSRF跨站请求伪造原理黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。 这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为">
+<meta name="twitter:title" content="CSRF跨站请求伪造">
+<meta name="twitter:description" content="CSRF跨站请求伪造原理黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。 这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为。">
 <meta name="twitter:image" content="http://img.xiumi.us/xmi/ua/2bu3p/i/42bbf278ceffe24249498c89b89ad441-sz_25418.png">
   
     <link rel="alternative" href="/atom.xml" title="Hacker" type="application/atom+xml">
@@ -114,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="../../../../tags/python/" style="font-size: 10px;">python</a>
+						<a href="../../../../tags/WEB安全/" style="font-size: 10px;">WEB安全</a> <a href="../../../../tags/python/" style="font-size: 20px;">python</a>
 					</div>
 				</section>
 				
@@ -164,7 +165,7 @@
   
     <div class="article-meta">
       <a href class="article-date">
-  	<time datetime="2019-05-28T11:38:49.444Z" itemprop="datePublished">2019-05-28</time>
+  	<time datetime="2019-05-28T11:56:53.406Z" itemprop="datePublished">2019-05-28</time>
 </a>
     </div>
   
@@ -173,13 +174,37 @@
       <input type="hidden" class="isFancy">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSRF跨站请求伪造
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/WEB安全/">WEB安全</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="../../../../categories/WEB安全/">WEB安全</a>
+	</div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>title:CSRF跨站请求伪造</p>
-<p>tags:WEB安全</p>
-<p>categories:WEB安全</p>
-<hr>
-<h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。</p>
+        <h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>黑客利用已经登录的用户，诱使其访问或者登录某个早已构造好的恶意链接或者页面，然后在用户毫不知情的情况下，以用户的名义完成了非用户本意的非法操作。</p>
 <p>这种操作我们也被称为“One Click Attack” 或者Session Riding，通常缩写为CRSF，是一种对网站的恶意利用行为。</p>
 <a id="more"></a>
 <p>与XSS攻击相比较，CSRF攻击往往不大流行（因此对其进行的防范资源也相对稀少）。</p>
@@ -244,7 +269,7 @@
 </article>
 
 
-<div class="ds-share share" data-thread-key="CSRF跨站请求伪造" data-title data-url="https://github.com/lzhblog/lzhblog.github.io" data-images="/img/image.jpg" data-content>
+<div class="ds-share share" data-thread-key="CSRF跨站请求伪造" data-title="CSRF跨站请求伪造" data-url="https://github.com/lzhblog/lzhblog.github.io" data-images="/img/image.jpg" data-content="CSRF跨站请求伪造">
     <div class="ds-share-inline">
       <ul class="ds-share-icons-16">
       	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
