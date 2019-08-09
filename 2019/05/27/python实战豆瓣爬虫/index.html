@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>python实战-豆瓣爬虫 | Hacker</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="python实战-豆瓣爬虫##一、教学目标  掌握Python基本语法，DOM树结构、XML文件XPath 语法  了解requests库的使用，了解beautifulsoup，openpyxl的应用  实现对于电影top250的数据爬取，并保存到execl中、或者数据库中。">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python实战-豆瓣爬虫">
+<meta property="og:url" content="https://github.com/lzhblog/lzhblog.github.io/2019/05/27/python实战豆瓣爬虫/index.html">
+<meta property="og:site_name" content="Hacker">
+<meta property="og:description" content="python实战-豆瓣爬虫##一、教学目标  掌握Python基本语法，DOM树结构、XML文件XPath 语法  了解requests库的使用，了解beautifulsoup，openpyxl的应用  实现对于电影top250的数据爬取，并保存到execl中、或者数据库中。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109155753419-1411600537.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109162243872-1491006257.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109164328044-1812809779.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109165932544-1148817400.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109165421872-1350037263.png">
+<meta property="og:updated_time" content="2019-05-28T11:56:58.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python实战-豆瓣爬虫">
+<meta name="twitter:description" content="python实战-豆瓣爬虫##一、教学目标  掌握Python基本语法，DOM树结构、XML文件XPath 语法  了解requests库的使用，了解beautifulsoup，openpyxl的应用  实现对于电影top250的数据爬取，并保存到execl中、或者数据库中。">
+<meta name="twitter:image" content="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109155753419-1411600537.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hacker" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/image.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/image.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Hacker安全</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/WEB/" style="font-size: 10px;">WEB</a> <a href="/tags/nmap/" style="font-size: 10px;">nmap</a> <a href="/tags/python/" style="font-size: 20px;">python</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Hacker安全</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/image.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Hacker安全</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-python实战豆瓣爬虫" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/27/python实战豆瓣爬虫/" class="article-date">
+  	<time datetime="2019-05-27T11:33:26.615Z" itemprop="datePublished">2019-05-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python实战-豆瓣爬虫
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/python/">python</a>
+	</div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="python实战-豆瓣爬虫"><a href="#python实战-豆瓣爬虫" class="headerlink" title="python实战-豆瓣爬虫"></a>python实战-豆瓣爬虫</h1><p>##一、教学目标</p>
+<ul>
+<li><p>掌握Python基本语法，DOM树结构、XML文件XPath 语法</p>
+</li>
+<li><p>了解requests库的使用，了解beautifulsoup，openpyxl的应用</p>
+</li>
+<li><p>实现对于电影top250的数据爬取，并保存到execl中、或者数据库中。</p>
+<a id="more"></a>
+</li>
+</ul>
+<h2 id="二、教学内容"><a href="#二、教学内容" class="headerlink" title="二、教学内容"></a>二、教学内容</h2><h3 id="实验准备"><a href="#实验准备" class="headerlink" title="实验准备"></a>实验准备</h3><p>Windows下Python3.x开发环境、代码编辑器、Microsoft <em>Excel</em> 或者WPS OFFICE</p>
+<ul>
+<li><p>requests：HTTP for Humans</p>
+</li>
+<li><p>beautifulsoup:  HTML或XML文件中提取数据的Python库 </p>
+</li>
+<li><p>lxml: 一个非常快速，简单易用，功能齐全的库，用来处理 HTML 和 XML。<a href="http://lxml.de/" target="_blank" rel="noopener">官网</a></p>
+</li>
+<li><p>openpyxl:  用于读取/写入Excel 2010 xlsx / xlsm文件的Python库</p>
+</li>
+</ul>
+<p><strong>安装本实验开发需要Python库：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br><span class="line">pip install beautifulsoup4</span><br><span class="line">pip install lxml</span><br><span class="line">pip install openpyxl</span><br><span class="line">pip install PyMySQL</span><br></pre></td></tr></table></figure>
+<p>官方文档<br>[openpyxl]: <a href="http://openpyxl.readthedocs.io/en/stable/" target="_blank" rel="noopener">http://openpyxl.readthedocs.io/en/stable/</a>    “openpyxl”<br>[requests]: <a href="http://docs.python-requests.org/zh_CN/latest/" target="_blank" rel="noopener">http://docs.python-requests.org/zh_CN/latest/</a>    “requests”<br>[beautifulsoup]: <a href="http://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/" target="_blank" rel="noopener">http://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/</a>    “beautifulsoup”<br>[PyMySQL]: <a href="https://pymysql.readthedocs.io/en/latest/" target="_blank" rel="noopener">https://pymysql.readthedocs.io/en/latest/</a>    “PyMySQL”</p>
+<p>XPath 语法<br><a href="http://www.w3school.com.cn/xpath/xpath_syntax.asp" target="_blank" rel="noopener">http://www.w3school.com.cn/xpath/xpath_syntax.asp</a></p>
+<p>目标站有反爬虫机制，如爬虫处理不当，容易被封IP。</p>
+<h2 id="爬虫原理"><a href="#爬虫原理" class="headerlink" title="爬虫原理"></a>爬虫原理</h2><h2 id><a href="#" class="headerlink" title=" "></a> </h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>简单来说互联网是由一个个站点和网络设备组成的大网，我们通过浏览器访问站点，站点把HTML、JS、CSS代码返回给浏览器，这些代码经过浏览器解析、渲染，将丰富多彩的网页呈现我们眼前；</p>
+<h2 id="一、爬虫是什么？"><a href="#一、爬虫是什么？" class="headerlink" title="一、爬虫是什么？"></a>一、爬虫是什么？</h2><p>如果我们把互联网比作一张大的蜘蛛网，数据便是存放于蜘蛛网的各个节点，而爬虫就是一只小蜘蛛，</p>
+<p>沿着网络抓取自己的猎物（数据）爬虫指的是：向网站发起请求，获取资源后分析并提取有用数据的程序；</p>
+<p>从技术层面来说就是 通过程序模拟浏览器请求站点的行为，把站点返回的HTML代码/JSON数据/二进制数据（图片、视频） 爬到本地，进而提取自己需要的数据，存放起来使用；</p>
+<h2 id="二、爬虫的基本流程："><a href="#二、爬虫的基本流程：" class="headerlink" title="二、爬虫的基本流程："></a>二、爬虫的基本流程：</h2><p>用户获取网络数据的方式：</p>
+<p>方式1：浏览器提交请求—&gt;下载网页代码—&gt;解析成页面</p>
+<p>方式2：模拟浏览器发送请求(获取网页代码)-&gt;提取有用的数据-&gt;存放于数据库或文件中</p>
+<p>爬虫要做的就是方式2；</p>
+<p> <img src="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109155753419-1411600537.png" alt="img"></p>
+<p><strong>1、发起请求</strong></p>
+<p><strong>requests</strong></p>
+<p>使用http库向目标站点发起请求，即发送一个Request</p>
+<p>Request包含：请求头、请求体等 </p>
+<p>Request模块缺陷：不能执行JS 和CSS 代码</p>
+<p><strong>2、获取响应内容</strong></p>
+<p>如果服务器能正常响应，则会得到一个Response</p>
+<p>Response包含：html，json，图片，视频等</p>
+<p><strong>3、解析内容</strong></p>
+<p>解析html数据：正则表达式（RE模块），第三方解析库如Beautifulsoup，pyquery等</p>
+<p>解析json数据：json模块</p>
+<p>解析二进制数据:以wb的方式写入文件</p>
+<p><strong>4、保存数据</strong></p>
+<p>数据库（MySQL，Mongdb、Redis）</p>
+<p>文件</p>
+<h2 id="三、http协议-请求与响应"><a href="#三、http协议-请求与响应" class="headerlink" title="三、http协议 请求与响应"></a>三、http协议 请求与响应</h2><p><img src="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109162243872-1491006257.png" alt="img"></p>
+<p>Request：用户将自己的信息通过浏览器（socket client）发送给服务器（socket server）</p>
+<p>Response：服务器接收请求，分析用户发来的请求信息，然后返回数据（返回的数据中可能包含其他链接，如：图片，js，css等）</p>
+<p>ps：浏览器在接收Response后，会解析其内容来显示给用户，而爬虫程序在模拟浏览器发送请求然后接收Response后，是要提取其中的有用数据。</p>
+<h2 id="四、-request"><a href="#四、-request" class="headerlink" title="四、 request"></a>四、 request</h2><p><strong>1、请求方式：</strong></p>
+<p>常见的请求方式：GET / POST</p>
+<p><strong>2、请求的URL</strong></p>
+<p>url全球统一资源定位符，用来定义互联网上一个唯一的资源 例如：一张图片、一个文件、一段视频都可以用url唯一确定</p>
+<p>url编码</p>
+<p><a href="https://www.baidu.com/s?wd=图片" target="_blank" rel="noopener">https://www.baidu.com/s?wd=图片</a></p>
+<p>图片会被编码（看示例代码）</p>
+<p>网页的加载过程是：</p>
+<p>加载一个网页，通常都是先加载document文档，</p>
+<p>在解析document文档的时候，遇到链接，则针对超链接发起下载图片的请求</p>
+<p><strong>3、请求头</strong></p>
+<p>User-agent：请求头中如果没有user-agent客户端配置，服务端可能将你当做一个非法用户host；</p>
+<p>cookies：cookie用来保存登录信息</p>
+<p>注意： 一般做爬虫都会加上请求头</p>
+<p><img src="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109164328044-1812809779.png" alt="img"></p>
+<p> <img src="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109165932544-1148817400.png" alt="img"></p>
+<p> <img src="https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109165421872-1350037263.png" alt="img"></p>
+<p><strong>请求头需要注意的参数：</strong></p>
+<p>（1）Referrer：访问源至哪里来（一些大型网站，会通过Referrer 做防盗链策略；所有爬虫也要注意模拟）</p>
+<p>（2）User-Agent:访问的浏览器（要加上否则会被当成爬虫程序）</p>
+<p>（3）cookie：请求头注意携带</p>
+<p><strong>4、请求体</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请求体</span><br><span class="line">    如果是get方式，请求体没有内容 （get请求的请求体放在 url后面参数中，直接能看到）</span><br><span class="line">    如果是post方式，请求体是format data</span><br><span class="line"></span><br><span class="line">    ps：</span><br><span class="line">    1、登录窗口，文件上传等，信息都会被附加到请求体内</span><br><span class="line">    2、登录，输入错误的用户名密码，然后提交，就可以看到post，正确登录后页面通常会跳转，无法捕捉到post</span><br></pre></td></tr></table></figure>
+<h2 id="五、-响应Response"><a href="#五、-响应Response" class="headerlink" title="五、 响应Response"></a>五、 响应Response</h2><p><strong>1、响应状态码</strong></p>
+<p>　　200：代表成功</p>
+<p>　　301：代表跳转</p>
+<p>　　404：文件不存在</p>
+<p>　　403：无权限访问</p>
+<p>　　502：服务器错误</p>
+<p><strong>2、respone header</strong></p>
+<p><strong>响应头需要注意的参数：</strong></p>
+<p>（1）Set-Cookie:BDSVRTM=0; path=/：可能有多个，是来告诉浏览器，把cookie保存下来</p>
+<p>（2）Content-Location：服务端响应头中包含Location返回浏览器之后，浏览器就会重新访问另一个页面</p>
+<p><strong>3、preview就是网页源代码</strong></p>
+<p>JSO数据</p>
+<p>如网页html，图片</p>
+<p>二进制数据等 </p>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p><strong>1、总结爬虫流程：</strong></p>
+<p> 爬取—&gt;解析—&gt;存储</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/27/python保留字/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          python保留字详解
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="python实战豆瓣爬虫" data-title="python实战-豆瓣爬虫" data-url="https://github.com/lzhblog/lzhblog.github.io/2019/05/27/python实战豆瓣爬虫/" data-images="/img/image.jpg" data-content="python实战-豆瓣爬虫">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Hacker安全
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>python保留字详解 | Hacker</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python保留字详解查看方法： import keyword keyword.kwlist">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python保留字详解">
+<meta property="og:url" content="https://github.com/lzhblog/lzhblog.github.io/2019/05/27/python保留字/index.html">
+<meta property="og:site_name" content="Hacker">
+<meta property="og:description" content="Python保留字详解查看方法： import keyword keyword.kwlist">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://wx1.sinaimg.cn/large/ba3524d5gy1fp587k5eonj20ih03xt95.jpg">
+<meta property="og:updated_time" content="2019-05-28T10:59:09.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python保留字详解">
+<meta name="twitter:description" content="Python保留字详解查看方法： import keyword keyword.kwlist">
+<meta name="twitter:image" content="https://wx1.sinaimg.cn/large/ba3524d5gy1fp587k5eonj20ih03xt95.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Hacker" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/image.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/image.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Hacker安全</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/WEB/" style="font-size: 10px;">WEB</a> <a href="/tags/nmap/" style="font-size: 10px;">nmap</a> <a href="/tags/python/" style="font-size: 20px;">python</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Hacker安全</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/image.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Hacker安全</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-python保留字" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/27/python保留字/" class="article-date">
+  	<time datetime="2019-05-27T11:40:58.182Z" itemprop="datePublished">2019-05-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python保留字详解
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/python/">python</a>
+	</div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="Python保留字详解"><a href="#Python保留字详解" class="headerlink" title="Python保留字详解"></a>Python保留字详解</h2><p>查看方法：</p>
+<p>import keyword</p>
+<p>keyword.kwlist</p>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th><strong>序号</strong></th>
+<th style="text-align:center"><strong>python保留字</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:center">print</td>
+<td>打印语句</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">global</td>
+<td>定义全局变量</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:center">class</td>
+<td>用于定义类</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:center">lambda</td>
+<td>定义匿名函数</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:center"><strong>def</strong></td>
+<td>用户定义函数或者方法</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:center">return</td>
+<td>用于从函数返回计算结果</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:center">del</td>
+<td>删除变量或者序号的值</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align:center">pass</td>
+<td>空的类、方法或者函数的占位符</td>
+</tr>
+<tr>
+<td>9</td>
+<td style="text-align:center">elif</td>
+<td>条件语句，与if，else结合使用</td>
+</tr>
+<tr>
+<td>10</td>
+<td style="text-align:center">else</td>
+<td>条件语句，与if，elif结合使用。也可用于异常和循环语句</td>
+</tr>
+<tr>
+<td>11</td>
+<td style="text-align:center">if</td>
+<td>条件语句，与elif、else结合使用</td>
+</tr>
+<tr>
+<td>12</td>
+<td style="text-align:center">exec</td>
+<td>用于执行python语句</td>
+</tr>
+<tr>
+<td>13</td>
+<td style="text-align:center">for</td>
+<td>for循环语句</td>
+</tr>
+<tr>
+<td>14</td>
+<td style="text-align:center">while</td>
+<td>while循环语句</td>
+</tr>
+<tr>
+<td>15</td>
+<td style="text-align:center">break</td>
+<td>中断循环语句</td>
+</tr>
+<tr>
+<td>16</td>
+<td style="text-align:center">continue</td>
+<td>继续执行下一次循环</td>
+</tr>
+<tr>
+<td>17</td>
+<td style="text-align:center">assert</td>
+<td>断言，用于判断条件或者变量表达式是否为真</td>
+</tr>
+<tr>
+<td>18</td>
+<td style="text-align:center">raise</td>
+<td>异常抛出操作</td>
+</tr>
+<tr>
+<td>19</td>
+<td style="text-align:center">finally</td>
+<td>用于异常语句，出现异常后，始终要执行finally包含的代码块。与try，except结合使用</td>
+</tr>
+<tr>
+<td>20</td>
+<td style="text-align:center">try</td>
+<td>try包含可能包含的异常语句，与except、finally结合使用</td>
+</tr>
+<tr>
+<td>21</td>
+<td style="text-align:center">except</td>
+<td>包含捕获异常后的操作代码块，与try、finally结合使用</td>
+</tr>
+<tr>
+<td>22</td>
+<td style="text-align:center">from</td>
+<td>用于导入模块，与import结合使用</td>
+</tr>
+<tr>
+<td>23</td>
+<td style="text-align:center">import</td>
+<td>用于导入模块，与from结合使用</td>
+</tr>
+<tr>
+<td>24</td>
+<td style="text-align:center">in</td>
+<td>判断变量是否在序列中</td>
+</tr>
+<tr>
+<td>25</td>
+<td style="text-align:center">is</td>
+<td>判断变量是否为某个类的实例</td>
+</tr>
+<tr>
+<td>26</td>
+<td style="text-align:center">as</td>
+<td>用户类型转换</td>
+</tr>
+<tr>
+<td>27</td>
+<td style="text-align:center">not</td>
+<td>用于表达式运算，逻辑非操作</td>
+</tr>
+<tr>
+<td>28</td>
+<td style="text-align:center">or</td>
+<td>用于表达式运算，逻辑或操作</td>
+</tr>
+<tr>
+<td>29</td>
+<td style="text-align:center">and</td>
+<td>用于表达式运算，逻辑与操作</td>
+</tr>
+<tr>
+<td>30</td>
+<td style="text-align:center">with</td>
+<td>简化python语句</td>
+</tr>
+<tr>
+<td>31</td>
+<td style="text-align:center">yield</td>
+<td>用于从函数依次返回值</td>
+</tr>
+</tbody>
+</table>
+<p>python的保留字并不多，一共33个</p>
+<p><img src="https://wx1.sinaimg.cn/large/ba3524d5gy1fp587k5eonj20ih03xt95.jpg" alt="img"></p>
+<p><strong>1.False</strong></p>
+<p>if q=False:#Flase</p>
+<p><strong>2.None</strong></p>
+<p>表示该值是一个空对象，空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。</p>
+<p>>&gt;&gt;type(None)</p>
+<class 'nonetype'>
+
+<p>>&gt;&gt;type(‘’)</p>
+<p>&lt;class ‘’str’&gt;</p>
+<p>你可以将None赋值给任何变量，也可以将任何变量赋值给一个None值的对象</p>
+<p><strong>3.True</strong></p>
+<p>if q=True:#True</p>
+<p><strong>4.and</strong></p>
+<p>q and p:q和p都满足一定条件，缺一不可</p>
+<p>if ( q and p ):</p>
+<pre><code>print &quot;1 - 变量 q 和 p 都为 true&quot;
+</code></pre><p><strong>5.as</strong></p>
+<p>import tushare as ts</p>
+<p><strong>6.assert</strong></p>
+<p>assert断言语句：<a href="http://zhuanlan.zhihu.com/p/32017976" target="_blank" rel="noopener">【Python】【assert】assert断言语句</a></p>
+<p><strong>7.break</strong></p>
+<p><strong>参考文献：</strong><a href="https://link.zhihu.com/?target=http%3A//www.runoob.com/python/python-break-statement.html" target="_blank" rel="noopener">Python break 语句 | 菜鸟教程</a></p>
+<p>break语句用在while和for循环中，用来终止循环语句，即循环条件没有False条件或者序列还没被完全递归完，也会停止执行循环语句。</p>
+<p>如果您使用嵌套循环，break语句将停止执行最深层的循环，并开始执行下一行代码。</p>
+<p>for letter in ‘Python’: # 第一个实例</p>
+<pre><code>if letter == &apos;h&apos;:
+
+    break
+
+print &apos;当前字母 :&apos;, letter
+</code></pre><p>var = 10# 第二个实例</p>
+<p>while var &gt; 0:</p>
+<pre><code>print &apos;当前变量值 :&apos;, var
+
+var = var -1
+
+if var == 5: # 当变量 var 等于 5 时退出循环
+
+    break
+</code></pre><p>print “Good bye!”</p>
+<p><strong>8.class</strong></p>
+<p>用来创建类</p>
+<p>>&gt;&gt; class Dog:</p>
+<p>…     def <strong>init</strong>(self,name):#类创建的时候便执行，常用来初始化类</p>
+<p>…         self.name=name</p>
+<p>…         self.<strong>voice=”wangwang”#</strong>voice表示voice属性为私有属性</p>
+<p>…     def yell(self):#功能函数</p>
+<p>…         print self.<strong>voice#yell函数用来打印私有变量</strong>voice</p>
+<p>…</p>
+<p><strong>9.continue</strong></p>
+<p><strong>参考文献：</strong><a href="https://link.zhihu.com/?target=http%3A//www.runoob.com/python/python-continue-statement.html" target="_blank" rel="noopener">Python continue 语句</a></p>
+<p>重新执行循环</p>
+<p>Python continue 语句跳出本次循环，而break跳出整个循环。</p>
+<p>continue 语句用来告诉Python跳过当前循环的剩余语句，然后继续进行下一轮循环。</p>
+<p>continue语句用在while和for循环中。</p>
+<p>for letter in ‘Python’: # 第一个实例</p>
+<pre><code>if letter == &apos;h&apos;:
+
+    continue
+
+print &apos;当前字母 :&apos;, letter
+</code></pre><p>var = 10# 第二个实例</p>
+<p>while var &gt; 0:</p>
+<pre><code>var = var -1
+
+if var == 5:
+
+    continue
+
+print &apos;当前变量值 :&apos;, var
+</code></pre><p>print “Good bye!”</p>
+<p><strong>10.def;29return</strong></p>
+<p>创建函数</p>
+<p>def functionname( parameters ):#parameters是自定义参数</p>
+<p>“函数_文档字符串”</p>
+<pre><code>function_suite
+
+return [expression]#expression是返回值，当调用functionname函数时，就会返回expression值
+</code></pre><p><strong>11.del</strong></p>
+<p><strong>参考文献：</strong><a href="https://link.zhihu.com/?target=http%3A//blog.csdn.net/love1code/article/details/47276683" target="_blank" rel="noopener">python 中del 的用法 - CSDN博客</a></p>
+<p>python中del删除的是变量，而不是数据</p>
+<p>a=1 # 对象 1 被变量a引用，对象1的引用计数器为1</p>
+<p>b=a # 对象1 被变量b引用，对象1的引用计数器加1</p>
+<p>c=a # 对象1 被变量c引用，对象1的引用计数器加1</p>
+<p>del a #删除变量a，解除a对1的引用</p>
+<p>del b #删除变量b，解除b对1的引用</p>
+<p>print(c)#最终变量c仍然引用1</p>
+<p>关于list</p>
+<p>li=[1,2,3,4,5]#列表本身不包含数据1,2,3,4,5，而是包含变量：li[0] li[1] li[2] li[3] li[4]</p>
+<p>first=li[0] #拷贝列表，也不会有数据对象的复制，而是创建新的变量引用</p>
+<p>del li[0]</p>
+<p>print(li)#输出[2, 3, 4, 5]</p>
+<p>print(first) #输出 1</p>
+<p><strong>12.elif;19.if</strong></p>
+<p>if expression1:</p>
+<pre><code>statement(s)
+</code></pre><p>elif expression2:</p>
+<pre><code>statement(s)
+</code></pre><p>elif expression3:</p>
+<pre><code>statement(s)
+</code></pre><p>else:</p>
+<pre><code>statement(s)
+</code></pre><p><strong>13.else;14.except;15.finally;30.try</strong></p>
+<p>这几个保留字放在一起说</p>
+<p>常在python中用来捕捉并处理异常</p>
+<p>try:</p>
+<pre><code>clause
+</code></pre><p>except:</p>
+<pre><code>clause#出现异常时执行
+</code></pre><p>else:</p>
+<pre><code>clause#不出现异常时执行
+</code></pre><p>finally:</p>
+<pre><code>clause#不管有无异常都要执行
+</code></pre><p>异常处理实例</p>
+<p>不想让用户按ctrl+c中断循环</p>
+<p>import time</p>
+<p>for i in range(10)：#数量量小用range(),数据量大xrange()</p>
+<pre><code>print i
+
+try:
+
+    time.sleep(1)
+
+except KeyboardInterrupt:#捕捉键盘异常处理
+
+    break#退出循环
+</code></pre><p>依旧中断循环，但无错误信息</p>
+<p><strong>16.for;21. in</strong></p>
+<p>for q in range(100):</p>
+<p><strong>17.from;20.import</strong></p>
+<p>from datetime import datetime#是只引入datetime包里的datetime类</p>
+<p>import datetime#引入整个datetime包</p>
+<p><strong>18.global</strong></p>
+<p>申请全局变量</p>
+<p>在编写程序的时候，如果想为一个在函数外的变量重新赋值，并且这个变量会作用于许多函数中时，就需要告诉python这个变量的作用域是全局变量。此时用global语句就可以变成这个任务，也就是说没有用global语句的情况下，是不能修改全局变量的。</p>
+<p>>&gt;&gt;x = 6</p>
+<p>>&gt;&gt;def func():</p>
+<p>>&gt;&gt;global x</p>
+<p>>&gt;&gt;x = 1</p>
+<p>>&gt;&gt;</p>
+<p>>&gt;&gt;func()</p>
+<p>>&gt;&gt;print x</p>
+<p>1</p>
+<p><strong>22. is</strong></p>
+<p>python is 主要是判断 2 个变量是否引用的是同一个对象，如果是的话，则返回 true，否则返回 false。<strong>即两个对象的**</strong>id<strong>**要相同，引用同一块区域。</strong></p>
+<p><strong>判断数字相等不要用</strong> <strong>is</strong> <strong>操作符</strong></p>
+<p>>&gt;&gt; a = 256</p>
+<p>>&gt;&gt; b = 256</p>
+<p>>&gt;&gt; id(a)</p>
+<p>9987148</p>
+<p>>&gt;&gt; id(b)</p>
+<p>9987148</p>
+<p>>&gt;&gt; a = 257</p>
+<p>>&gt;&gt; b = 257</p>
+<p>>&gt;&gt; id(a)</p>
+<p>11662816</p>
+<p>>&gt;&gt; id(b)</p>
+<p>11662828</p>
+<p><strong>is</strong> <strong>相等代表两个对象的</strong> <strong>id</strong> <strong>相同**</strong>(<strong><strong>从底层来看的话，可以看作引用同一块内存区域</strong></strong>)<strong>**。</strong></p>
+<p><strong>所以即使数值相同，**</strong>a<strong><strong>与</strong></strong>b<strong>**依旧不同。</strong></p>
+<p><strong>23.lambda</strong></p>
+<p>lambda作为一个表达式，定义了一个匿名函数，上例的代码x为入口参数，x+1为函数体</p>
+<p>>&gt;&gt; g=lambda x:x+1</p>
+<p>>&gt;&gt; g(1)</p>
+<p>2</p>
+<p>>&gt;&gt; g(2)</p>
+<p>3</p>
+<p><strong>24.nonlocal</strong></p>
+<p>非局部变量</p>
+<p>这是python3新增的关键词</p>
+<p><a href="https://zhuanlan.zhihu.com/p/32050475" target="_blank" rel="noopener">【Python】【nonlocal】【global 】nonlocal非局部变量、global 全局变量、局部变量</a></p>
+<p><strong>25.not</strong></p>
+<p>if not( q and p ):</p>
+<pre><code>print &quot;变量 q 和 p 都为 false，或其中一个变量为 false&quot;
+</code></pre><p><strong>26.or</strong></p>
+<p>if ( a or b ):</p>
+<pre><code>print &quot;变量 a 和 b 都为 true，或其中一个变量为 true&quot;
+</code></pre><p><strong>27.pass</strong></p>
+<p><strong>参考文献：</strong><a href="https://link.zhihu.com/?target=http%3A//www.runoob.com/python/python-pass-statement.html" target="_blank" rel="noopener">Python pass 语句 | 菜鸟教程</a></p>
+<p>Python pass是空语句，是为了保持程序结构的完整性。</p>
+<p>pass 不做任何事情，一般用做占位语句。</p>
+<p>for letter in ‘Python’:</p>
+<pre><code>if letter == &apos;h&apos;:
+
+    pass
+
+    print &apos;这是 pass 块&apos;
+
+print &apos;当前字母 :&apos;, letter
+</code></pre><p>print “Good bye!”</p>
+<p><strong>28.raise</strong></p>
+<p><strong>参考文献：</strong><a href="https://link.zhihu.com/?target=https%3A//www.cnblogs.com/zhangyin6985/p/7229553.html" target="_blank" rel="noopener">python中异常处理–raise的使用 - 远游骑士 - 博客园</a></p>
+<p>触发异常</p>
+<p>当程序出现错误，python会自动引发异常，也可以通过raise显示地引发异常。一旦执行了raise语句，raise后面的语句将不能执行。</p>
+<p>try:</p>
+<pre><code>s = None
+
+if s is None:
+
+    print &quot;s 是空对象&quot;
+
+    raise NameError #如果引发NameError异常，后面的代码将不能执行
+
+print len(s)#这句不会执行，但是后面的except还是会走到
+</code></pre><p>except TypeError:</p>
+<pre><code>print &quot;空对象没有长度&quot;
+</code></pre><p>s = None</p>
+<p>if s is None:</p>
+<pre><code>raise NameError
+</code></pre><p>print ‘is here?’ #如果不使用try……except这种形式，那么直接抛出异常，不会执行到这里</p>
+<p><strong>31.while</strong></p>
+<p><strong>参考文献：</strong><a href="https://link.zhihu.com/?target=http%3A//www.runoob.com/python/python-while-loop.html" target="_blank" rel="noopener">Python While 循环语句</a></p>
+<p>Python 编程中 while 语句用于循环执行程序，即在某条件下，循环执行某段程序，以处理需要重复处理的相同任务。其基本形式为：</p>
+<p>while 判断条件：</p>
+<pre><code>执行语句……
+</code></pre><p>执行语句可以是单个语句或语句块。判断条件可以是任何表达式，任何非零、或非空（null）的值均为true。</p>
+<p>当判断条件假false时，循环结束。</p>
+<p>count = 0</p>
+<p>while (count &lt; 9):</p>
+<pre><code>print &apos;The count is:&apos;, count
+
+count = count + 1
+</code></pre><p>print “Good bye!”</p>
+<p><strong>32.with</strong></p>
+<p>with语句：<a href="https://zhuanlan.zhihu.com/p/32122124" target="_blank" rel="noopener">【Python】【with】with语句</a></p>
+<p><strong>33.yield</strong></p>
+<p>yield语句：<a href="https://zhuanlan.zhihu.com/p/32178981" target="_blank" rel="noopener">【Python】【yield】yield详解</a></p>
+</class>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/28/CSRF跨站请求伪造/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          CSRF跨站请求伪造
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/27/python实战豆瓣爬虫/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python实战-豆瓣爬虫</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="python保留字" data-title="python保留字详解" data-url="https://github.com/lzhblog/lzhblog.github.io/2019/05/27/python保留字/" data-images="/img/image.jpg" data-content="python保留字详解">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Hacker安全
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
